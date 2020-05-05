@@ -24,7 +24,7 @@ RCT_EXPORT_METHOD(initialize)
     RCTLogInfo(@"Initialize is deprecated in v2");
 }
 
-RCT_EXPORT_METHOD(call:(NSString *)urlString userInfo:(NSDictionary *)userInfo)
+RCT_EXPORT_METHOD(call:(NSString *)urlString userInfo:(NSDictionary *)userInfo shortName:(NSString *)shortName contact:(NSString *)contact)
 {
     RCTLogInfo(@"Load URL %@", urlString);
     JitsiMeetUserInfo * _userInfo = [[JitsiMeetUserInfo alloc] init];
@@ -44,12 +44,21 @@ RCT_EXPORT_METHOD(call:(NSString *)urlString userInfo:(NSDictionary *)userInfo)
         JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {        
             builder.room = urlString;
             builder.userInfo = _userInfo;
+            builder.subject = [NSString stringWithFormat:@"%@ and %@", shortName, contact];
+            [builder setFeatureFlag:@"add-people.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"calendar.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"chat.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"invite.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"live-streaming.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"raise-hand.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"recording.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"welcomepage.enabled" withBoolean:NO];
         }];
         [jitsiMeetView join:options];
     });
 }
 
-RCT_EXPORT_METHOD(audioCall:(NSString *)urlString userInfo:(NSDictionary *)userInfo)
+RCT_EXPORT_METHOD(audioCall:(NSString *)urlString userInfo:(NSDictionary *)userInfo shortName:(NSString *)shortName contact:(NSString *)contact)
 {
     RCTLogInfo(@"Load Audio only URL %@", urlString);
     JitsiMeetUserInfo * _userInfo = [[JitsiMeetUserInfo alloc] init];
@@ -70,6 +79,15 @@ RCT_EXPORT_METHOD(audioCall:(NSString *)urlString userInfo:(NSDictionary *)userI
             builder.room = urlString;
             builder.userInfo = _userInfo;
             builder.audioOnly = YES;
+            builder.subject = [NSString stringWithFormat:@"%@ and %@", shortName, contact];
+            [builder setFeatureFlag:@"add-people.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"calendar.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"chat.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"invite.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"live-streaming.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"raise-hand.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"recording.enabled" withBoolean:NO];
+            [builder setFeatureFlag:@"welcomepage.enabled" withBoolean:NO];
         }];
         [jitsiMeetView join:options];
     });
