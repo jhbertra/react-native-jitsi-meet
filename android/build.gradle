@@ -47,5 +47,14 @@ repositories {
 dependencies {
     implementation ('org.jitsi.react:jitsi-meet-sdk:2.4.0') {
       transitive = true
+      exclude module: "react-native-google-signin"
+      exclude module: "react-native-linear-gradient"
+      exclude module: "react-native-svg"
+      exclude module: "react-native-background-timer"
+      exclude module: "react-native-community-async-storage"
+      exclude module: "react-native-community_netinfo"
+      exclude module: "react-native-sound"
+      exclude module: "react-native-sound"
+      exclude module: "react-native-webview"
     }
 }
