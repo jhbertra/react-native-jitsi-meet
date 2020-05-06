@@ -57,7 +57,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .setRoom(url)
                             .setAudioOnly(false)
                             .setUserInfo(_userInfo)
-                            .setSubject(shortName + " and " + contact
+                            .setSubject(shortName + " and " + contact)
                             .setFeatureFlag("add-people.enabled", false)
                             .setFeatureFlag("calendar.enabled", false)
                             .setFeatureFlag("chat.enabled", false)
@@ -99,7 +99,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .setRoom(url)
                             .setAudioOnly(true)
                             .setUserInfo(_userInfo)
-                            .setSubject(shortName + " and " + contact
+                            .setSubject(shortName + " and " + contact)
                             .setFeatureFlag("add-people.enabled", false)
                             .setFeatureFlag("calendar.enabled", false)
                             .setFeatureFlag("chat.enabled", false)
